@@ -3,10 +3,7 @@ import stack
 
 def test():
     p = stack.Stack(int, 1)
-
-    if p.push(2) is not None:
-        return 'Fail _push()'
-
+    p.push(2)
     try:
         p.push('qwerty')
     except ValueError:
@@ -19,7 +16,7 @@ def test():
     except ValueError:
         print('push() OK')
     else:
-        return 'Fail push()'
+        return 'Fail _push()'
 
     if p.count() != 1:
         return 'Fail count()'
@@ -28,7 +25,7 @@ def test():
     p.clear()
     if p.count() != 0:
         return 'Fail clear()'
-    if p.__str__() != 'Stack<int>':
+    if str(p) != 'Stack<int>':
         return 'Fail __str__()'
     if p.type != 'Stack<int>':
         return 'Fail type()'

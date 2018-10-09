@@ -1,4 +1,5 @@
 class Stack:
+
     def __init__(self, data_type=object, limit=None):
         """создаю конструктор"""
         self.data_type = data_type
@@ -9,13 +10,16 @@ class Stack:
         """возвращающий строку вида 'Stack<тип данных>'"""
         return 'Stack<' + str(self.data_type.__name__) + '>'
 
-    def push(self, item):
-        """проверяет возможность добавления элемента в стэк (по лимиту и типу),
-            если это возможно - добавляет новый объект в стэк"""
+    def _push(self, item):
         if type(item) is not self.data_type:
             raise ValueError('TypeError')
         if len(self.items) == self.limit:
             raise ValueError('LimitExceedError')
+
+    def push(self, item):
+        """проверяет возможность добавления элемента в стэк (по лимиту и типу),
+            если это возможно - добавляет новый объект в стэк"""
+        self._push(item)
         self.items.append(item)
 
     def pull(self):
@@ -34,3 +38,4 @@ class Stack:
         self.items = []
 
     type = property(__str__)
+
