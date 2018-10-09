@@ -9,19 +9,18 @@ class Stack:
         """возвращающий строку вида 'Stack<тип данных>'"""
         return 'Stack<' + str(self.data_type.__name__) + '>'
 
-    def _push(self, element):
-        """проверяет возможность добавления элемента в стэк (по лимиту и типу)"""
-        if type(element) is not self.data_type:
+    def push(self, item):
+        """проверяет возможность добавления элемента в стэк (по лимиту и типу),
+            если это возможно - добавляет новый объект в стэк"""
+        if type(item) is not self.data_type:
             raise ValueError('TypeError')
         if len(self.items) == self.limit:
             raise ValueError('LimitExceedError')
-
-    def push(self, item):
-        """добавляет новый объект в стэк"""
         self.items.append(item)
 
     def pull(self):
-        """извлекает верхний элемент стэка и возвращает его. В случае пустого стэка генерит исключение EmptyStackError"""
+        """извлекает верхний элемент стэка и возвращает его.
+            В случае пустого стэка генерит исключение EmptyStackError"""
         if len(self.items) == 0:
             raise ValueError('EmptyStackError')
         return self.items.pop()
@@ -34,6 +33,4 @@ class Stack:
         """очищает стэк"""
         self.items = []
 
-    def type(self):
-        """возвращает тип данных стэка"""
-        return self.data_type
+    type = property(__str__)

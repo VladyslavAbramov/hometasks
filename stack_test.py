@@ -3,26 +3,34 @@ import stack
 
 def test():
     p = stack.Stack(int, 1)
-    if p._push(2) is not None:
+
+    if p.push(2) is not None:
         return 'Fail _push()'
-    if p._push('qwerty') != 'TypeError':
+
+    try:
+        p.push('qwerty')
+    except ValueError:
+        print('push() OK')
+    else:
         return 'Fail _push()'
-    p.push(3)
-    if p._push(4) != 'LimitExceedError':
+
+    try:
+        p.push(4)
+    except ValueError:
+        print('push() OK')
+    else:
         return 'Fail push()'
+
     if p.count() != 1:
         return 'Fail count()'
-    if p.pull() != 3:
+    if p.pull() != 2:
         return 'Fail pull()'
-    p.push(0)
     p.clear()
     if p.count() != 0:
         return 'Fail clear()'
-    if p._push('string') is None:
-        return 'Fail push()'
     if p.__str__() != 'Stack<int>':
         return 'Fail __str__()'
-    if p.type() is not int:
+    if p.type != 'Stack<int>':
         return 'Fail type()'
     return 'Test OK'
 
