@@ -12,9 +12,9 @@ class Stack:
     def _push(self, element):
         """проверяет возможность добавления элемента в стэк (по лимиту и типу)"""
         if type(element) is not self.data_type:
-            return 'TypeError'
+            raise ValueError('TypeError')
         if len(self.items) == self.limit:
-            return 'LimitExceedError'
+            raise ValueError('LimitExceedError')
 
     def push(self, item):
         """добавляет новый объект в стэк"""
@@ -23,7 +23,7 @@ class Stack:
     def pull(self):
         """извлекает верхний элемент стэка и возвращает его. В случае пустого стэка генерит исключение EmptyStackError"""
         if len(self.items) == 0:
-            return 'EmptyStackError'
+            raise ValueError('EmptyStackError')
         return self.items.pop()
 
     def count(self):
