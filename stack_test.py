@@ -27,7 +27,7 @@ def test():
         return 'Fail clear()'
     if str(p) != 'Stack<int>':
         return 'Fail __str__()'
-    if p.type != 'Stack<int>':
+    if p.type is not int:
         return 'Fail type()'
     return 'Test OK'
 

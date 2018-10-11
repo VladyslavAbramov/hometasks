@@ -37,5 +37,7 @@ class Stack:
         """очищает стэк"""
         self.items = []
 
-    type = property(__str__)
-
+    @property
+    def type(self):
+        """возвращает тип данных стэка"""
+        return self.data_type
