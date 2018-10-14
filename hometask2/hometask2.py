@@ -1,7 +1,18 @@
 import os
 import shutil
+from datetime import datetime
 
 
+def time_decor(fn):
+    def wrapped(param):
+        start = datetime.now()
+        fn(param)
+        end = datetime.now()
+        print(end - start)
+        return fn(param)
+    return wrapped
+
+@time_decor
 def process(string):
     if string[0] != '[' and string[-1] != ']':
         raise ValueError('Not list')
@@ -28,3 +39,4 @@ def monitor(read_catalog=r'D:\ITEA\lesson2\test\input',
             except BaseException:
                 shutil.copy(read_catalog + '\\' + file_txt, error_catalog)
                 os.remove(write_catalog + '\\' + file_txt)
+
